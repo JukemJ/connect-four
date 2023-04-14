@@ -1,0 +1,67 @@
+body{
+    background-color: rgb(157, 146, 255);
+}
+/* GAME CONTROLS */
+.button{
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: rgb(154, 67, 253);
+    border-radius: 100px;
+}
+
+/* GAME BOARD */
+.cell{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: rgb(154, 67, 253);
+    border: 2px solid black;
+    border-top:10px solid black;
+}
+#game-board{
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    padding-bottom: 40px;
+    border: 3px solid black;
+    border-bottom: 10px solid black;
+}
+.arrow{
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    padding: 0;
+    border-top: 10px solid rgb(157, 146, 255);
+    
+}
+
+
+/* SCOREBOARDS */
+.scoreboard{
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid black;
+    border-bottom: 10px solid black;
+}
+.score{
+    font-size: 50px;
+}
+
+/* PLAYER ICONS */
+.player-icon{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border: 2px solid black;
+    border-radius: 50%;
+    border-bottom: 5px solid black;
+    margin-top: -10px;
+}
+#player-one-icon{
+    background-color: red;
+}
+#player-two-icon{
+    background-color: blue;
+}
