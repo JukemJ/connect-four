@@ -2,15 +2,19 @@ let gameBoard = Array(7).fill(null).map(x => Array(7).fill(null))
 let playerOneScore = 0
 let playerTwoScore = 0
 let playerOneTurn = true
+let gameOver = false
 document.getElementById('restart').addEventListener('click',newGame)
 newGame()
 
 function newGame(){
+    playerOneTurn = true
+    gameOver = false
     gameBoard = gameBoard.map(x => x.map(y => 0))
     createBoard()
 }
 
 function drop(){
+    if (gameOver) return
     //console.log(this.getAttribute('column'))
     //console.log(gameBoard)
     //player one gets marked with '1'
@@ -65,7 +69,8 @@ function playerOneWins(){
     playerOneScore++
     localStorage.setItem('playerOne',playerOneScore)
     document.getElementById('player-one-score').innerText = playerOneScore
-    document.getElementsByClassName('cell').forEach(x => x.removeEventListener('click',drop))
+    let cells = document.getElementsByClassName('cell')
+    gameOver = true
 }
 
 function playerTwoWins(){
@@ -73,7 +78,7 @@ function playerTwoWins(){
     playerTwoScore++
     localStorage.setItem('playerTwo',playerTwoScore)
     document.getElementById('player-two-score').innerText = playerTwoScore
-    document.getElementsByClassName('cell').forEach(x => x.removeEventListener('click',drop))
+    gameOver = true
 }
 
 
