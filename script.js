@@ -4,6 +4,7 @@ let playerTwoScore = 0
 let playerOneTurn = true
 let gameOver = false
 document.getElementById('restart').addEventListener('click',newGame)
+
 newGame()
 
 function newGame(){
@@ -15,8 +16,7 @@ function newGame(){
 
 function drop(){
     if (gameOver) return
-    //console.log(this.getAttribute('column'))
-    //console.log(gameBoard)
+
     //player one gets marked with '1'
     //player two gets marked with '-1'
     //win check: if line == 4 or -4
@@ -58,7 +58,31 @@ function winCheck(){
             if(sum == -4) playerTwoWins()
         }
     }
+
     //check diagonals
+    for(let i = 0; i < 4; i++){
+        for(let j = 0; j < 4; j++){
+          let arr = []
+          arr.push(gameBoard[i][j])
+          arr.push(gameBoard[i+1][j+1])
+          arr.push(gameBoard[i+2][j+2])
+          arr.push(gameBoard[i+3][j+3])
+          if (arr.reduce((a,b) => a+b,0) == 4) playerOneWins()
+          if (arr.reduce((a,b) => a+b,0) == -4) playerTwoWins()
+        }
+      }
+      
+      for(let i = 0; i < 4; i++){
+        for(let j = 6; j > 4; j--){
+          let arr = []
+          arr.push(gameBoard[i][j])
+          arr.push(gameBoard[i+1][j-1])
+          arr.push(gameBoard[i+2][j-2])
+          arr.push(gameBoard[i+3][j-3])
+          if (arr.reduce((a,b) => a+b,0) == 4) playerOneWins()
+          if (arr.reduce((a,b) => a+b,0) == -4) playerTwoWins()
+        } 
+      } 
 
     //change turns
     playerOneTurn = !playerOneTurn
@@ -80,7 +104,6 @@ function playerTwoWins(){
     document.getElementById('player-two-score').innerText = playerTwoScore
     gameOver = true
 }
-
 
 function createBoard(){ 
     const board = document.getElementById('game-board')
@@ -109,4 +132,3 @@ function createBoard(){
     let arrow = document.getElementById(this.getAttribute('column'))
     arrow.style.borderTopColor = 'rgb(157, 146, 255)'
   }
-
