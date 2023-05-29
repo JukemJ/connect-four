@@ -1,9 +1,14 @@
 let gameBoard = Array(7).fill(null).map(x => Array(7).fill(null))
-let playerOneScore = 0
-let playerTwoScore = 0
+let playerOneScore = localStorage.getItem('playerOne') ?? 0
+let playerTwoScore = localStorage.getItem('playerTwo') ?? 0
 let playerOneTurn = true
 let gameOver = false
+
+document.getElementById('clear').addEventListener('click',clearScores)
 document.getElementById('restart').addEventListener('click',newGame)
+
+document.getElementById('player-one-score').innerText = playerOneScore
+document.getElementById('player-two-score').innerText = playerTwoScore
 
 newGame()
 
@@ -89,19 +94,21 @@ function winCheck(){
 }
 
 function playerOneWins(){
-    alert('Player One Wins!')
+    //alert('Player One Wins!')
     playerOneScore++
-    localStorage.setItem('playerOne',playerOneScore)
+    localStorage.setItem('playerOne',playerOneScore + 1)
     document.getElementById('player-one-score').innerText = playerOneScore
     let cells = document.getElementsByClassName('cell')
+    document.getElementById('player-one-wins').style.display = 'block'
     gameOver = true
 }
 
 function playerTwoWins(){
-    alert('Player Two Wins!')
+    //alert('Player Two Wins!')
     playerTwoScore++
-    localStorage.setItem('playerTwo',playerTwoScore)
+    localStorage.setItem('playerTwo',playerTwoScore + 1)
     document.getElementById('player-two-score').innerText = playerTwoScore
+    document.getElementById('player-two-wins').style.display = 'block'
     gameOver = true
 }
 
@@ -131,4 +138,14 @@ function createBoard(){
   function hideArrow(){
     let arrow = document.getElementById(this.getAttribute('column'))
     arrow.style.borderTopColor = 'rgb(157, 146, 255)'
+  }
+
+  function clearScores(){
+    if(!gameOver) alert('Game in progress!')
+    else{
+        playerOneScore = 0
+        playerTwoScore = 0
+        document.getElementById('player-one-score').innerText = playerOneScore
+        document.getElementById('player-two-score').innerText = playerTwoScore
+    }
   }

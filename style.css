@@ -65,3 +65,9 @@ body{
 #player-two-icon{
     background-color: blue;
 }
+
+/* WIN MESSAGE */
+.win-message{
+    display: none;
+    background-color: white;
+}
